@@ -1,0 +1,169 @@
+/* 1. Box model rule (Lecture 4, Slide 10) */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Respect user motion preferences (Lecture 1, Slide 12 & Lecture 3, Slide 13) */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none;
+    transition: none;
+    scroll-behavior: auto;
+  }
+}
+
+/* 3. Base typography & high contrast (Lecture 3, Slide 11 & Lecture 4, Slide 11) */
+body {
+  margin: 0;
+  font-family: sans-serif;
+  line-height: 1.6;
+  color: #111111;
+  background-color: #ffffff;
+}
+
+/* 4. Normal flow & readable line length ~65ch (Lecture 4, Slide 14 & Slide 30) */
+header,
+nav,
+main,
+footer {
+  max-width: 90rem;
+  margin-inline: auto;
+  padding: 1rem;
+}
+
+p,
+li,
+blockquote,
+figcaption {
+  max-width: 65ch;
+}
+
+/* 5. Fluid heading size with clamp() (Lecture 4, Slide 20) */
+h1 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+  margin-top: 2rem;
+  border-bottom: 2px solid #111111;
+  padding-bottom: 0.25rem;
+}
+
+/* 6. Keyboard accessibility: Skip link & visible focus (Lecture 3, Slide 12) */
+.skip-link {
+  position: absolute;
+  top: -10rem;
+  left: 1rem;
+  background-color: #111111;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+a {
+  color: #003399;
+  text-decoration: underline;
+}
+
+a:hover,
+a:focus {
+  background-color: #e6eeff;
+  outline: 2px solid #003399;
+  outline-offset: 2px;
+}
+
+/* 7. Navigation with Flexbox (Lecture 4, Slide 15, 17 & 24: "Few links: always visible") */
+header {
+  border-bottom: 2px solid #111111;
+}
+
+nav {
+  background-color: #f4f4f4;
+  border-bottom: 1px solid #cccccc;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* 8. Card Grid layout: 1 column first, then responsive columns (Lecture 4, Slide 16, 18 & 30) */
+.cards {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  margin-top: 1rem;
+}
+
+/* Tablet (~768px) -> 2 columns */
+@media (min-width: 42em) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop (~1024px) -> auto-fit minmax formula from Lecture 4, Slide 16 */
+@media (min-width: 60em) {
+  .cards {
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  }
+}
+
+.card {
+  border: 1px solid #cccccc;
+  background-color: #fafafa;
+  padding: 1rem;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+blockquote {
+  margin: 0.5rem 0;
+  padding-left: 1rem;
+  border-left: 3px solid #111111;
+}
+
+/* 9. Adaptive images (Lecture 4, Slide 21 & Slide 30) */
+figure {
+  margin: 1.5rem 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+figcaption {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+aside {
+  background-color: #f4f4f4;
+  border-left: 4px solid #111111;
+  padding: 1rem;
+  margin-top: 1.5rem;
+}
+
+footer {
+  border-top: 2px solid #111111;
+  margin-top: 3rem;
+  font-size: 0.9rem;
+}
